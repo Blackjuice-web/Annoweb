@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+
+<body>
+<div class="container">
+	<h1>Transaction History</h1>
+	<table id="history-table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Account Number</th>
+				<th>Amount</th>
+				<th>Option</th>
+				<th>Bank</th>
+			</tr>
+		</thead>
+		<tbody id="history-body">
+		</tbody>
+	</table>
+</div>
+<style>
+*{
+	margin: 0;
+	padding :0 ;
+	box-sizing: border-box ;
+	font-family: sans-serif ;
+	font-size: 12px ;
+}
+h1{
+	padding :10px ;
+	display :grid ;
+	justify-content :center ;
+}
+    #history-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    #history-table th, #history-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    #history-table th {
+      background-color: #f0f0f0;
+    }
+  </style>
+</body>
+<script>
+	const historyBody = document.getElementById('history-body');
+	
+	// Load saved user info from local storage
+	const savedUserInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
+	
+	// Create table rows for saved user info
+	savedUserInfo.forEach((userInfo) => {
+		const row = document.createElement('tr');
+		const nameCell = document.createElement('td');
+		nameCell.textContent = userInfo.name;
+		const telCell = document.createElement('td');
+		telCell.textContent = userInfo.tel;
+		const amountCell = document.createElement('td');
+		amountCell.textContent = userInfo.amount;
+		const optionCell = document.createElement('td');
+		optionCell.textContent = userInfo.option;
+		const bankCell = document.createElement('td');
+		bankCell.textContent = userInfo.bank;
+		row.appendChild(nameCell);
+		row.appendChild(telCell);
+		row.appendChild(amountCell);
+		row.appendChild(optionCell);
+		row.appendChild(bankCell);
+		historyBody.appendChild(row);
+	});
+	const userInfo = {
+		name: nameInput.value,
+		tel: telInput.value,
+		amount: numberInput.value,
+		option: optionSelect.value,
+		bank: bankSelect.value,
+	};
+</script>
+</html>
